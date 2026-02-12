@@ -51,41 +51,6 @@ public class Segment {
         return direct || reverse;
     }
 
-    public float getSlope() {
-        float dx = p2.getX() - p1.getX();
-        if (dx == 0) {
-            throw new ArithmeticException("Vertical line - slope is undefined");
-        }
-        return (p2.getY() - p1.getY()) / dx;
-    }
-
-    public float getIntercept() {
-        float k = getSlope();
-        return p1.getY() - k * p1.getX();
-    }
-
-    public boolean isOnLine(Point p) {
-        float k = getSlope();
-        float b = getIntercept();
-        float yCalc = k * p.getX() + b;
-
-        return Math.abs(p.getY() - yCalc) < 0.0001; // float precision tolerance
-    }
-
-    public boolean isOnSegment(Point p) {
-        if (!isOnLine(p)) return false;
-
-        float minX = Math.min(p1.getX(), p2.getX());
-        float maxX = Math.max(p1.getX(), p2.getX());
-        float minY = Math.min(p1.getY(), p2.getY());
-        float maxY = Math.max(p1.getY(), p2.getY());
-
-        return (p.getX() >= minX && p.getX() <= maxX &&
-                p.getY() >= minY && p.getY() <= maxY);
-    }
-
-    @Override
-    public String toString() {
-        return "Segment[" + p1 + " -> " + p2 + "]";
-    }
+    
 }
+
